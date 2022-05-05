@@ -73,8 +73,8 @@ while True:
             if pesquisa == veic.placa:
                 veic.mostraVeiculo()
                 t = 's'
-            if t == 'n':
-                print('Nenhum veículo encontrado!')
+        if t == 'n':
+            print('Nenhum veículo encontrado!')
         a = input('')
         continue
     elif var == 6:
@@ -88,8 +88,8 @@ while True:
                 total = veic.registraSaida(hsaida)
                 print(f'O valor total a pagar é de R$: {total:.2f}')
                 t = 's'
-            if t == 'n':
-                print('Nenhum veículo encontrado!')
+        if t == 'n':
+            print('Nenhum veículo encontrado!')
         a = input('')
         continue
         
