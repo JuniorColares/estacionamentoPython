@@ -1,12 +1,11 @@
 import os
 
 class Veiculo:
-    def __init__(self, tipo, valor, placa, modelo, data, entrada, hentrada, hsaida = 0, status = 'ESTACIONADO'):
+    def __init__(self, tipo, valor, placa, modelo, entrada, hentrada, hsaida = 0, status = 'ESTACIONADO'):
         self.__tipo = tipo
         self.__valor = valor
         self.__placa = placa
         self.__modelo = modelo
-        self.__data = data
         self.__entrada = entrada
         self.__hentrada = hentrada
         self.__hsaida = hsaida
