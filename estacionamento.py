@@ -1,23 +1,26 @@
 import os
 
 class Veiculo:
-    def __init__(self, tipo, valor, placa, modelo, data, hentrada, mentrada, hsaida = 0, total = 0, status = 'ESTACIONADO'):
+    def __init__(self, tipo, valor, placa, modelo, data, entrada, hentrada, hsaida = 0, status = 'ESTACIONADO'):
         self.__tipo = tipo
         self.__valor = valor
         self.__placa = placa
         self.__modelo = modelo
         self.__data = data
+        self.__entrada = entrada
         self.__hentrada = hentrada
-        self.__mentrada = mentrada
         self.__hsaida = hsaida
-        self.__total = total
         self.__status = status
-    
+
+    @property
+    def placa(self):
+        return self.__placa
+
     def mostraVeiculo(self):
         print(f'\nTipo: {self.__tipo}')
         print(f'Placa: {self.__placa}')
         print(f'Modelo: {self.__modelo}')
-        print(f'Entrada: {self.__hentrada}:{self.__mentrada:02.0f}')
+        print(f'Entrada: {self.__entrada}')
         print(f'Status: {self.__status}')
 
     def registraSaida(self, hsaida):
@@ -25,7 +28,7 @@ class Veiculo:
         htotal = self.__hsaida - self.__hentrada
         total = htotal*self.__valor
         self.__status = 'VEÍCULO SAIU DO ESTACIONAMENTO'
-        return total
+        print(f'O valor total a pagar é de R$: {total:.2f}')
 
 def inicial():
     print('****************************************')    
@@ -51,13 +54,13 @@ while True:
     inicial()
     var = int(input('Informe a opção desejada: '))
     if var == 1:
-        tipo = 'moto'
+        tipo = 'Moto'
         valor = 2.0
     elif var == 2:
-        tipo = 'carro'
+        tipo = 'Carro'
         valor = 5.0
     elif var == 3:
-        tipo = 'caminhão'
+        tipo = 'Caminhão'
         valor = 8.0
     elif var == 4:
         for veic in lista:
@@ -81,13 +84,19 @@ while True:
         pesquisa = input('Informe a placa do veículo: ')
         for veic in lista:
             if pesquisa == veic.placa:
-                hsaida = int(input('Informe a hora da saída: '))
-                msaida = int(input('Informe os minutos de saída: '))
+                t = 's'
+                saida = input('Informe a hora da saída (hh:mm): ')
+                horas=[]
+                for i in saida:
+                    horas.append(i)
+                hsaida = int(horas[0] + horas[1])
+                if hsaida < hentrada or hsaida > 24:
+                    print('Horário inválido!')
+                    continue
+                msaida = int(horas[3] + horas[4])
                 if msaida > 0:
                     hsaida += 1
                 total = veic.registraSaida(hsaida)
-                print(f'O valor total a pagar é de R$: {total:.2f}')
-                t = 's'
         if t == 'n':
             print('Nenhum veículo encontrado!')
         a = input('')
@@ -102,9 +111,16 @@ while True:
     placa = input(f'Informe a placa do(a) {tipo}: ')
     modelo = input(f'Qual o modelo: ')
     data = input('Data entrada (dd/mm): ')
-    hentrada = int(input('Informe a hora da entrada: '))
-    mentrada = int(input('Informe os minutos de entrada: '))
-    
-    veiculo = Veiculo(tipo, valor, placa, modelo, data, hentrada, mentrada)
+    entrada = input('Informe a hora da entrada (hh:mm): ')
+    horae=[]
+    for i in entrada:
+        horae.append(i)
+    hentrada = int(horae[0] + horae[1])
+    if hentrada > 24:
+        print('Horário inválido!')
+        continue
+
+    veiculo = Veiculo(tipo, valor, placa, modelo, data, entrada, hentrada)
     lista.append(veiculo)
 
+print('SISTEMA ENCERRADO')
