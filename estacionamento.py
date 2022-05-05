@@ -2,29 +2,29 @@ import os
 
 class Veiculo:
     def __init__(self, tipo, valor, placa, modelo, data, hentrada, mentrada, hsaida = 0, total = 0, status = 'ESTACIONADO'):
-        self.tipo = tipo
-        self.valor = valor
-        self.placa = placa
-        self.modelo = modelo
-        self.data = data
-        self.hentrada = hentrada
-        self.mentrada = mentrada
-        self.hsaida = hsaida
-        self.total = total
-        self.status = status
+        self.__tipo = tipo
+        self.__valor = valor
+        self.__placa = placa
+        self.__modelo = modelo
+        self.__data = data
+        self.__hentrada = hentrada
+        self.__mentrada = mentrada
+        self.__hsaida = hsaida
+        self.__total = total
+        self.__status = status
     
     def mostraVeiculo(self):
-        print(f'\nTipo: {self.tipo}')
-        print(f'Placa: {self.placa}')
-        print(f'Modelo: {self.modelo}')
-        print(f'Entrada: {self.hentrada}:{self.mentrada:02.0f}')
-        print(f'Status: {self.status}')
+        print(f'\nTipo: {self.__tipo}')
+        print(f'Placa: {self.__placa}')
+        print(f'Modelo: {self.__modelo}')
+        print(f'Entrada: {self.__hentrada}:{self.__mentrada:02.0f}')
+        print(f'Status: {self.__status}')
 
     def registraSaida(self, hsaida):
-        self.hsaida = hsaida
-        htotal = self.hsaida - self.hentrada
-        total = htotal*self.valor
-        self.status = 'VEÍCULO SAIU DO ESTACIONAMENTO'
+        self.__hsaida = hsaida
+        htotal = self.__hsaida - self.__hentrada
+        total = htotal*self.__valor
+        self.__status = 'VEÍCULO SAIU DO ESTACIONAMENTO'
         return total
 
 def inicial():
